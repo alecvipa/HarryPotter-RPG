@@ -1,0 +1,68 @@
+.image {
+    width: 300pt;
+    
+}
+.container1 {
+    background-color: black;
+    width: 300pt;
+    height: 198pt;
+    margin-bottom: 3%;
+    opacity: 0.7;
+    
+}
+.container2 {
+    background-color: black;
+    width: 300pt;
+    height: 214pt;
+    margin-bottom: 3%;
+    opacity: 0.7;
+}
+/* .container3 {
+    background-color: black;
+    width: 300pt;
+    height: 210pt;
+    margin-bottom: 3%;
+    opacity: 0.7;
+} */
+.container4 {
+    background-color: black;
+    width: 300pt;
+    height: 230pt;
+    margin-bottom: 3%;
+    opacity: 0.7;
+}
+/* .container5 {
+    background-color: black;
+    width: 300pt;
+    height: 190pt;
+    margin-bottom: 3%;
+    opacity: 0.7;
+} */
+.text {
+    color: aliceblue;
+    text-align: center;
+}
+#expellbutton {
+    background-color: rgb(3, 97, 3);
+    border-color: rgb(3, 97, 3);
+    color: wheat;
+    height: 60px;
+    font-size: 15px;
+    border-radius: 8%;
+    position: absolute;
+    right: 3%;
+    bottom: 70%;
+}
+h1 {
+    color: wheat;
+
+}
+.wizards {
+    float: left;
+
+}
+.wizards:hover {
+    opacity: 1;
+}
+
+

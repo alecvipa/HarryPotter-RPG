@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Harry Potter RPG</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href=style.css>
+</head>
+<body id="hogwarts" background="../HarryPotter-RPG/images/Hogwarts_Post-Battle.jpg">
+    <div><h1>Save Hogwarts or make it of your own!</h1></div>
+    <!-- Create a button to start the attack. It shoud remain static -->
+    <button type="button" id="expellbutton">EXPELLIARMUS</button>
+    <div class="container1 wizards" id="wizard-harry">
+        <div><img src="../HarryPotter-RPG/images/harry potter wond.jpg" alt="HarryPotter" id="HarryPotter" class="image"></div>
+        <div class="text" id="HarryScore"></div>
+    </div>
+    <!-- <div class="container3 wizards" id="wizard-ron">
+        <div><img src="../HarryPotter-RPG/images/Ron_weasley.jpg" alt="Ron" id="Ron" class="image"></div>
+        <div class="text">Ron: 100</div>
+    </div> -->
+    <div class="container4 wizards" id="wizard-malfoy">
+        <div><img src="../HarryPotter-RPG/images/Draco.jpg" alt="Malfoy" id="Malfoy" class="image"></div>
+        <div class="text" id="MalfoyScore"></div>
+    </div>
+    <div class="container2 wizards" id="wizard-hermione">
+        <div><img src="../HarryPotter-RPG/images/Hermione.jpeg" alt="Hermione" id="Hermione" class="image" ></div>
+        <div class="text" id="HermioneScore"></div>
+    </div>
+    
+    <!-- <div class="container5 wizards" id="wizard-voldi">
+        <div><img src="../HarryPotter-RPG/images/VOLDEMORT.jpg" alt="Voldemort" id="Voldemort" class="image"></div>
+        <div class="text">Voldemort: 160</div>
+    </div> -->
+    
+    <script type="text/javascript">
+    // When the user clicks on the image. Send image to the other corner
+
+        $(document).ready(function () {
+            var yourwizard;
+            var youropponnet;
+
+            var nameid;
+            var Harrylife = 120;
+            var Harrydamage = 4;
+            
+            var Hermionelife = 130;
+            var Hermionedamage = 7;
+
+            var Dracolife = 150;
+            var Dracodamage = 5;
+
+            // var randomat = Math.floor(Math.random()*  + 3);
+            console.log(randomat);
+
+            $("#HarryScore").html("Harry Potter: "+ Harrylife);
+            $("#HermioneScore").html("Hermione: "+ Hermionelife);
+            $("#MalfoyScore").html("Malfoy: "+ Dracolife);
+
+            
+            setTimeout(alert1, 1000)
+            function alert1() {
+                alert("CHOOSE YOUR WIZARD")
+
+            }
+
+            var count = 0;
+
+                $(".wizards").on("click", function () {
+                    nameid = $(this).attr("id");
+                    count += 1;
+
+                    if (count === 1) {
+                        alert("CHOOSE YOUR OPPONENT");
+                        yourwizard = nameid;
+                        console.log(yourwizard);
+                    }
+                    if(count === 2) {
+                        youropponnet = nameid;
+                        console.log(youropponnet);
+                    }
+
+                    if(count < 3) {
+                        $("#" + nameid).animate({ opacity: "0.05" });
+                        $("#" + nameid).animate({ "margin-top": "400px" }, "fast")
+                        $("#" + nameid).animate({ opacity: "1" });
+                    }; 
+
+                });
+                $("#expellbutton").on("click", function (){
+
+                    if (yourwizard === "wizard-harry" && youropponnet === "wizard-hermione") {
+                
+                        var newHarry = Harrylife-Hermionedamage;
+                        var newHermione = Hermionelife-Harrydamage;
+                        console.log(newHarry , newHermione);
+                        Harrylife = newHarry;
+                        $("#HarryScore").html("Harry Potter: "+ newHarry);
+                        Harrydamage = Harrydamage + 2;
+                        console.log(Harrydamage);
+                        Hermionelife = newHermione;
+                        $("#HermioneScore").html("Hermione: "+ newHermione);
+                        Hermionedamage = Hermionedamage + 4;
+                        console.log(Hermionedamage);
+                        newHarry = Harrylife-Hermionedamage;
+                        newHermione = Hermionelife-Harrydamage;
+                        if (Harrylife < 0) {
+                            alert("YOU LOSE!!!");
+                        }else if (Hermionelife < 0) {
+                            alert("YOU WIN!!!");
+                        };
+                    }
+                    if (yourwizard === "wizard-hermione" && youropponnet === "wizard-harry") {
+
+                        var newHarry = Harrylife - Hermionedamage;
+                        var newHermione = Hermionelife - Harrydamage;
+                        Harrylife = newHarry;
+                        $("#HarryScore").html("Harry Potter: " + newHarry);
+                        Harrydamage = Harrydamage + 2;
+                        console.log(Harrydamage);
+                        Hermionelife = newHermione;
+                        $("#HermioneScore").html("Hermione: " + newHermione);
+                        Hermionedamage = Hermionedamage + 4;
+                        console.log(Hermionedamage);
+                        newHarry = Harrylife - Hermionedamage;
+                        newHermione = Hermionelife - Harrydamage;
+                        if (Harrylife < 0) {
+                            alert("YOU WIN!!!");
+                        } else if (Hermionelife < 0) {
+                            alert("YOU LOSE!!!");
+                        };
+                    }
+                    if (yourwizard === "wizard-harry" && youropponnet === "wizard-malfoy") {
+
+                        var newHarry = Harrylife - Dracodamage;
+                        var newMalfoy= Dracolife - Harrydamage;
+                        Harrylife = newHarry;
+                        $("#HarryScore").html("Harry Potter: " + newHarry);
+                        Harrydamage = Harrydamage + 2;
+                        console.log(Harrydamage);
+                        Dracolife = newMalfoy;
+                        $("#MalfoyScore").html("Malfoy: " + newMalfoy);
+                        Dracodamage = Dracodamage + 2;
+                        newHarry = Harrylife - Dracodamage;
+                        newMalfoy = Dracolife - Harrydamage;
+                        if (Harrylife < 0) {
+                            alert("YOU LOSE!!!");
+                        } else if (Dracolife < 0) {
+                            alert("YOU WIN!!!");
+                        };
+                    }else if (yourwizard === "wizard-malfoy" && youropponnet === "wizard-harry") {
+
+                        var newHarry = Harrylife - Dracodamage;
+                        var newMalfoy = Dracolife - Harrydamage;
+                        Harrylife = newHarry;
+                        $("#HarryScore").html("Harry Potter: " + newHarry);
+                        Harrydamage = Harrydamage + 2;
+                        console.log(Harrydamage);
+                        Dracolife = newMalfoy;
+                        $("#MalfoyScore").html("Malfoy: " + newMalfoy);
+                        Dracodamage = Dracodamage + 2;
+                        newHarry = Harrylife - Dracodamage;
+                        newMalfoy = Dracolife - Harrydamage;
+                        if (Harrylife < 0) {
+                            alert("YOU WIN!!!");
+                        } else if (Dracolife < 0) {
+                            alert("YOU LOSE!!!");
+                        };
+                    }else if (yourwizard === "wizard-hermione" && youropponnet === "wizard-malfoy") {
+
+                        var newHermione = Hermionelife - Dracodamage;
+                        var newMalfoy = Dracolife - Hermionedamage;
+                        Hermionelife = newHermione;
+                        $("#HermioneScore").html("Hermione: " + newHermione);
+                        Hermionedamage = Hermionedamage + 4;
+                        Dracolife = newMalfoy;
+                        $("#MalfoyScore").html("Malfoy: " + newMalfoy);
+                        Dracodamage = Dracodamage + 2;
+                        newHermione = Hermionelife - Dracodamage;
+                        newMalfoy = Dracolife - Hermionedamage;
+                        if (Hermionelife < 0) {
+                            alert("YOU LOSE!!!");
+                        } else if (Dracolife < 0) {
+                            alert("YOU WIN!!!");
+                        };
+                    } else if (yourwizard === "wizard-malfoy" && youropponnet === "wizard-hermione") {
+
+                        var newHermione = Hermionelife - Dracodamage;
+                        var newMalfoy = Dracolife - Hermionedamage;
+                        Hermionelife = newHermione;
+                        $("#HermioneScore").html("Hermione: " + newHermione);
+                        Hermionedamage = Hermionedamage + 4;
+                        Dracolife = newMalfoy;
+                        $("#MalfoyScore").html("Malfoy: " + newMalfoy);
+                        Dracodamage = Dracodamage + 2;
+                        newHermione = Hermionelife - Dracodamage;
+                        newMalfoy = Dracolife - Hermionedamage;
+                        if (Hermionelife < 0) {
+                            alert("YOU WIN!!!");
+                        } else if (Dracolife < 0) {
+                            alert("YOU LOSE!!!");
+                        };
+                    };
+                    
+                    
+
+                    
+
+                });
+
+                
+            
+            
+
+
+        });
+        // make body = position absolute; and images = pisition relative and move left
+        // The user can only choose 2 characters
+        // The user have to choose the enemy
+        // There is an attack button 
+        // Everytime the user use attack. The enemy loose points, but the user loose too
+        // $(".wizards").unbind("click");
+       
+        
+      </script>
+</body>
+</html>
